@@ -310,9 +310,11 @@ implements RestrictedAccess, Threadable {
             return true;
 
         $warning = null;
+        global $cfg;
+        
         if ($this->getMissingRequiredFields()) {
             $warning = sprintf(
-                    __( '%1$s is missing data on %2$s one or more required fields %3$s and cannot be closed'),
+                    __( '%1$s is missing data on %2$s one or more required fields %3$s and cannot be closed'.'<i class='.'"'.'icon-warning-sign help-tip warning'.'">'.' </i> '.'<a href='.'"'.$cfg->getBaseUrl().'/scp/tickets.php?id=%d'.$this->getId()).'&a=edit'.'"'.'>'.'Click here'.'</a>',
                     __('This ticket'),
                     '', '');
         } elseif (($num=$this->getNumOpenTasks())) {
